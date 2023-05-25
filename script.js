@@ -1,6 +1,12 @@
+// fetch bus stop id from API
 async function getbusStopInfo(busStopId) {
   const response = await fetch(`https://arrivelah2.busrouter.sg/?id=${busStopId}`)
   const result = await response.json()
+  return result
+}
+
+// format the bus info after fetch
+function formatBusInfo(result) {
   const services = result.services
 
   for (const service of services) {
@@ -25,9 +31,17 @@ async function getbusStopInfo(busStopId) {
       
     </td>
     `
+    row.classList.add("border-bottom")
 
     busInfo.appendChild(row)
   }
+}
+
+//add bus info into the table
+function addBusInfo(busInfo) {
+  getbusStopInfo(busInfo).then((data) => {
+    formatBusInfo(data)
+  })
 }
 
 //Convert ms to minutes
@@ -61,5 +75,5 @@ const busInfo = document.getElementById('busInfo')
 
 submit.addEventListener('click', () => {
   console.log("clicked")
-  getbusStopInfo(busStopId.value)
+  addBusInfo(busStopId.value)
 })
