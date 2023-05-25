@@ -11,6 +11,7 @@ function formatBusInfo(result) {
 
   for (const service of services) {
     const row = document.createElement('tr')
+    const filterOption = document.createElement('option')
 
     row.innerHTML = `
     <td class="text-center">${service.no}</td>
@@ -33,7 +34,12 @@ function formatBusInfo(result) {
     `
     row.classList.add("border-bottom")
 
+    filterOption.innerHTML = `Bus No.: ${service.no}`
+    filterOption.value = service.no
+    selectFilter.classList.replace('invisible', 'visible')
+
     busInfo.appendChild(row)
+    busNo.appendChild(filterOption)
   }
 }
 
@@ -72,6 +78,8 @@ function timeFormat(input) {
 const busStopId = document.getElementById('busStopId')
 const submit = document.getElementById('submit')
 const busInfo = document.getElementById('busInfo')
+const busNo = document.getElementById('busNo')
+const selectFilter = document.getElementById('selectFilter')
 
 submit.addEventListener('click', () => {
   console.log("clicked")

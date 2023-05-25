@@ -19,9 +19,12 @@
   <label for="busStopId" class="form-label my-3">Bus Stop ID</label>
   <input type="text" class="form-control" name="busStopId" id="busStopId" placeholder="Enter a bus stop ID">
   <button type="submit" class="btn btn-primary my-3" id="submit">Submit</button>
-  <div class="d-none">
-    <label for="filter" class="form-label my-3">Filter</label>
-    <select name="filter" id="busNo"></select>
+  
+  <div class="d-flex align-items-baseline invisible" id="selectFilter">
+    <label for="filter" class="form-label my-3 me-3">Filter</label>
+    <select name="filter" id="busNo" class="form-select">
+      <option value="">All</option>
+    </select>
   </div>
 
   <table class="table text-center" id="busInfo">
